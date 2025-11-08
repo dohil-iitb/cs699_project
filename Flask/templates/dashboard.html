@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h2>Welcome, {{ username }}!</h2>
+    <p>Search for drug prices and availability</p>
+</div>
+
+<div class="search-section">
+    <form method="POST" action="{{ url_for('search') }}">
+        <div class="search-form">
+            <input type="text" name="drug_name" placeholder="Enter drug name (e.g., Aspirin, Metformin)" required>
+            <button type="submit" class="btn btn-primary">Search Prices</button>
+        </div>
+    </form>
+</div>
+
+<div class="quick-stats">
+    <div class="stat-card">
+        <h3>Popular Searches</h3>
+        <ul>
+            <li>Aspirin</li>
+            <li>Metformin</li>
+            <li>Lipitor</li>
+            <li>Insulin</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

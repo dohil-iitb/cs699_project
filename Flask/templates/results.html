@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="results-header">
+    <h2>Price Results for "{{ search_term }}"</h2>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">New Search</a>
+</div>
+
+{% for drug in drug_data %}
+<div class="drug-card">
+    <h3>{{ drug.name }}</h3>
+    
+    <div class="price-analysis">
+        <h4>Analysis:</h4>
+        <div class="analysis-grid">
+            <div class="analysis-item">
+                <strong>Best Price:</strong> ${{ analysis[drug.name].best_price.price }} at {{ analysis[drug.name].best_price.pharmacy }}
+            </div>
+            <div class="analysis-item">
+                <strong>Average Price:</strong> ${{ analysis[drug.name].average_price }}
+            </div>
+            <div class="analysis-item">
+                <strong>Recommendation:</strong> 
+                <span class="recommendation {{ 'good' if analysis[drug.name].recommendation == 'Good Deal' else 'average' }}">
+                    {{ analysis[drug.name].recommendation }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="price-table">
+        <h4>Prices by Pharmacy:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pharmacy</th>
+                    <th>Price</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for price in drug.prices %}
+                <tr>
+                    <td>{{ price.pharmacy }}</td>
+                    <td>${{ price.price }}</td>
+                    <td>
+                        <span class="availability {{ 'available' if price.availability else 'unavailable' }}">
+                            {{ 'Available' if price.availability else 'Out of Stock' }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if price.availability %}
+                            <button class="btn btn-small">Select</button>
+                        {% else %}
+                            <button class="btn btn-small" disabled>Out of Stock</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
