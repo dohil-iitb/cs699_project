@@ -8,10 +8,6 @@ Me and my team have built a drug price tracker system that helps people find the
 pip install requirements.txt
 
 
-
-2. Add the data to the data folder:
-Add all drug names, prices, the website from where you collected them, and the date you added the data. This helps track price trends over time.
-
 3. Run the application:
 python app.py
 
