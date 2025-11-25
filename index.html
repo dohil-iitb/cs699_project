@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center; padding: 50px 0;">
+    <h2 style="margin-bottom: 20px; color: #555;">Track Medicine Prices <del>Across Multiple</del> Pharmacies</h2>
+    <p style="margin-bottom: 30px; font-size: 18px; color: #777;">
+        See price trends from Apollo Pharmacy <del> and MedPlus</del>
+    </p>
+
+    {% if session.user_id %}
+        <a href="{{ url_for('dashboard') }}" class="btn">Go to Dashboard</a>
+    {% else %}
+        <a href="{{ url_for('register') }}" class="btn" style="margin-right: 10px;">Get Started</a>
+        <a href="{{ url_for('login') }}" class="btn">Login</a>
+    {% endif %}
+</div>
+{% endblock %}
+

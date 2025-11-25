@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Medicine Tracker{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 30px;">Your Dashboard</h2>
+
+<div class="card">
+    <h3 style="margin-bottom: 15px;">Search for Medicines</h3>
+    <form method="POST" action="{{ url_for('search') }}">
+        <div style="display: flex; gap: 10px;">
+            <input type="text" name="medicine_name" placeholder="Enter medicine name" required style="flex: 1;">
+            <button type="submit" class="btn">Search</button>
+        </div>
+    </form>
+</div>
+
+<h3 style="margin-top: 40px; margin-bottom: 20px;">Your Watchlist</h3>
+
+{% if watchlist %}
+    {% for item in watchlist %}
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h4 style="margin-bottom: 5px;">{{ item.medicine_name }}</h4>
+                <small style="color: #888;">Added on {{ item.added_date.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <div>
+                <a href="{{ url_for('price_trend', medicine_name=item.medicine_name) }}" class="btn" style="margin-right: 10px;">View Trend</a>
+                <a href="{{ url_for('remove_from_watchlist', item_id=item.id) }}" class="btn" style="background: #e74c3c;">Remove</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <p style="color: #888;">No medicines in your watchlist yet. Search and add some!</p>
+{% endif %}
+{% endblock %}
