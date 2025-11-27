@@ -1,0 +1,43 @@
+# Drug Price Tracker
+
+Me and my team have built a drug price tracker system that helps people find the best pharmacy website and also see the price trends of a specific drug
+This project is in Linux system
+
+## How to Run the Code
+
+CREATE the virtual environment 
+    
+    python -m venv venv
+
+1. Install the requirements:
+pip install requirements.txt
+
+
+
+2. Run init_db.py
+python3 init_db.py it will setup the database 
+
+3. Run the application:
+python3 app.py
+
+4. Open the browser:
+http://127.0.0.1:5000
+
+## Features
+
+1. User login / signup
+2. Search for a particular drug
+3. Compare prices across different websites
+4. View prices from all websites and find the best option
+5. Save a drug in the watchlist for future reference
+
+## Technology Used
+
+- Flask
+- Pandas
+- Matplotlib
+- SQL
+- BeautifulSoup
+- Python3
+- Requests
+- Selenium

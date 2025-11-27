@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Medicine Tracker{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 30px;">Results for "{{ medicine_name }}"</h2>
+
+<a href="{{ url_for('add_to_watchlist', medicine_name=medicine_name) }}" class="btn" style="margin-bottom: 20px;">
+    Add to Watchlist
+</a>
+
+{% if results %}
+    {% for result in results %}
+    <div class="card">
+        <h3 style="margin-bottom: 15px;">{{ result.product_name }}</h3>
+        <div class="price">₹{{ result.price }}</div>
+        <span class="availability {% if 'In Stock' in result.availability %}in-stock{% else %}out-of-stock{% endif %}">
+            {{ result.availability }}
+        </span>
+        <a href="{{ url_for('add_to_watchlist', medicine_name=result.product_name.split(" - Apollo Pharmacy")[0].strip()) }}" class="btn" style="margin-bottom: 20px;">
+            Add to Watchlist
+        </a>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="card">
+        <p style="color: #888;">No results found</p>
+    </div>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}" class="btn" style="margin-top: 20px; background: #95a5a6;">Back to Dashboard</a>
+{% endblock %}

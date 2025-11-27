@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% block title %}Search Medicines{% endblock %}
+{% block content %}
+<div class="card" style="max-width: 600px; margin: 2rem auto;">
+    <h2 style="margin-bottom: 1.5rem;">Search Medicine</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Medicine Name</label>
+            <input type="text" name="medicine_name" placeholder="e.g., Paracetamol 500mg" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Search</button>
+    </form>
+</div>
+{% endblock %}
+
